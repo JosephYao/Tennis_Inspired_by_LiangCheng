@@ -1,101 +1,177 @@
 import org.junit.*;
 
+import static org.junit.Assert.assertEquals;
+
 public class TennisTest {
 
-	TennisChecker tennisCheckec = new TennisChecker();
+	Tennis tennis = new Tennis();
+
+	private void p1TakeScores(int score) {
+		while (score-- > 0)
+			tennis.p1TakeScore();
+	}
+
+	private void p2TakeScores(int score) {
+		while (score-- > 0)
+			tennis.p2TakeScore();
+	}
+
+	private void andScoreShouldBe(String expect) {
+		assertEquals(expect, tennis.scoreText());
+	}
+
+	private void equalScores(int score) {
+		p1TakeScores(score);
+		p2TakeScores(score);
+	}
+
+	private void duaceScores() {
+		equalScores(3);
+	}
+
+	private void p2AdventageScore() {
+		duaceScores();
+		p2TakeScores(1);
+	}
+
+	private void p1AdventageScore() {
+		duaceScores();
+		p1TakeScores(1);
+	}
 
 	@Test
 	public void startWithLoveAll() {
-		tennisCheckec.andScoreShouldBe("Love all");
+		andScoreShouldBe("Love all");
 	}
 
 	@Test
 	public void fifteenLove() {
-		tennisCheckec.p1TakeScores(1).andScoreShouldBe("Fifteen Love");
+		p1TakeScores(1);
+
+		andScoreShouldBe("Fifteen Love");
 	}
 
 	@Test
 	public void thirtyLove() {
-		tennisCheckec.p1TakeScores(2).andScoreShouldBe("Thirty Love");
+		p1TakeScores(2);
+
+		andScoreShouldBe("Thirty Love");
 	}
 
 	@Test
 	public void fourtyLove() {
-		tennisCheckec.p1TakeScores(3).andScoreShouldBe("Fourty Love");
+		p1TakeScores(3);
+
+		andScoreShouldBe("Fourty Love");
 	}
 
 	@Test
 	public void loveFifteen() {
-		tennisCheckec.p2TakeScores(1).andScoreShouldBe("Love Fifteen");
+		p2TakeScores(1);
+
+		andScoreShouldBe("Love Fifteen");
 	}
 
 	@Test
 	public void loveThirty() {
-		tennisCheckec.p2TakeScores(2).andScoreShouldBe("Love Thirty");
+		p2TakeScores(2);
+
+		andScoreShouldBe("Love Thirty");
 	}
 
 	@Test
 	public void equalScore() {
-		tennisCheckec.equalScores(1).andScoreShouldBe("Fifteen all");
+		equalScores(1);
+
+		andScoreShouldBe("Fifteen all");
 	}
 
 	@Test
 	public void p1TakeScoreAfterEqualScore() {
-		tennisCheckec.equalScores(1).p1TakeScores(1).andScoreShouldBe("Thirty Fifteen");
+		equalScores(1);
+		p1TakeScores(1);
+
+		andScoreShouldBe("Thirty Fifteen");
 	}
 
 	@Test
 	public void p2TakeScoreAfterEqualScore() {
-		tennisCheckec.equalScores(1).p2TakeScores(1).andScoreShouldBe("Fifteen Thirty");
+		equalScores(1);
+		p2TakeScores(1);
+
+		andScoreShouldBe("Fifteen Thirty");
 	}
 
 	@Test
 	public void duaceScore() {
-		tennisCheckec.duaceScores().andScoreShouldBe("Duace");
+		duaceScores();
+
+		andScoreShouldBe("Duace");
 	}
 
 	@Test
 	public void p1Adventage() {
-		tennisCheckec.p1AdventageScore().andScoreShouldBe("P1 Adventage");
+		p1AdventageScore();
+
+		andScoreShouldBe("P1 Adventage");
 	}
 
 	@Test
 	public void p2Adventage() {
-		tennisCheckec.p2AdventageScore().andScoreShouldBe("P2 Adventage");
+		p2AdventageScore();
+
+		andScoreShouldBe("P2 Adventage");
 	}
 
 	@Test
 	public void p1TakeScoreAfterP2Adventage() {
-		tennisCheckec.p2AdventageScore().p1TakeScores(1).andScoreShouldBe("Duace");
+		p2AdventageScore();
+		p1TakeScores(1);
+
+		andScoreShouldBe("Duace");
 	}
 
 	@Test
 	public void p2TakeScoreAfterP1Adventage() {
-		tennisCheckec.p1AdventageScore().p2TakeScores(1).andScoreShouldBe("Duace");
+		p1AdventageScore();
+		p2TakeScores(1);
+
+		andScoreShouldBe("Duace");
 	}
 
 	@Test
 	public void p1WinAfterAdventage() {
-		tennisCheckec.p1AdventageScore().p1TakeScores(1).andScoreShouldBe("P1 Win");
+		p1AdventageScore();
+		p1TakeScores(1);
+
+		andScoreShouldBe("P1 Win");
 	}
 
 	@Test
 	public void p2WinAfterAdventage() {
-		tennisCheckec.p2AdventageScore().p2TakeScores(1).andScoreShouldBe("P2 Win");
+		p2AdventageScore();
+		p2TakeScores(1);
+
+		andScoreShouldBe("P2 Win");
 	}
 
 	@Test
 	public void p1WinDirectly() {
-		tennisCheckec.p1TakeScores(4).andScoreShouldBe("P1 Win");
+		p1TakeScores(4);
+
+		andScoreShouldBe("P1 Win");
 	}
 
 	@Test
 	public void p2WinDirectly() {
-		tennisCheckec.p2TakeScores(4).andScoreShouldBe("P2 Win");
+		p2TakeScores(4);
+
+		andScoreShouldBe("P2 Win");
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void gameOver(){
-		tennisCheckec.p1TakeScores(4).p1TakeScores(1);
+		p1TakeScores(4);
+		p1TakeScores(1);
 	}
 }
