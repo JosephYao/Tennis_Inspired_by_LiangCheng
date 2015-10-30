@@ -1,3 +1,5 @@
+package tennis;
+
 public class PlayingScore extends TennisScoreOnlyMatchScore {
 
 	public PlayingScore(TennisScore p1, TennisScore p2) {

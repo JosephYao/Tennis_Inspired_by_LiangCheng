@@ -1,3 +1,5 @@
+package tennis;
+
 public class AdventageScore extends PlayerOnlyMatchScore {
 
 	public AdventageScore(Players player) {

@@ -1,3 +1,5 @@
+package tennis;
+
 public enum TennisScore {
 	DirectlyWin(null), Fourty(DirectlyWin), Thirty(Fourty), Fifteen(Thirty), Love(Fifteen);
 

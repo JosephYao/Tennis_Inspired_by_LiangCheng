@@ -1,3 +1,5 @@
+package tennis;
+
 interface MatchScore {
 	String scoreText();
 

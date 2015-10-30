@@ -1,6 +1,10 @@
+package tennis;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+
+import static tennis.Players.*;
 
 public class Tennis {
 
@@ -8,43 +12,43 @@ public class Tennis {
 
 	private Map<Class, Map<Players, Function<MatchScore, MatchScore>>> scoreToNextScore = new HashMap<Class, Map<Players, Function<MatchScore, MatchScore>>>() {{
 		put(EqualScore.class, new HashMap<Players, Function<MatchScore, MatchScore>>(){{
-			put(Players.P1, score -> {
+			put(P1, score -> {
 				return new PlayingScore(score.p1().nextScore(), score.p2());
 			});
-			put(Players.P2, score -> {
+			put(P2, score -> {
 				return new PlayingScore(score.p1(), score.p2().nextScore());
 			});
 		}});
 		put(PlayingScore.class, new HashMap<Players, Function<MatchScore, MatchScore>>(){{
-			put(Players.P1, score -> {
-				return nextMatchScoreOfPlaying(score.p1().nextScore(), score.p2(), Players.P1);
+			put(P1, score -> {
+				return nextMatchScoreOfPlaying(score.p1().nextScore(), score.p2(), P1);
 			});
-			put(Players.P2, score -> {
-				return nextMatchScoreOfPlaying(score.p1(), score.p2().nextScore(), Players.P2);
+			put(P2, score -> {
+				return nextMatchScoreOfPlaying(score.p1(), score.p2().nextScore(), P2);
 			});
 		}});
 		put(DuaceScore.class, new HashMap<Players, Function<MatchScore, MatchScore>>(){{
-			put(Players.P1, score -> {
-				return new AdventageScore(Players.P1);
+			put(P1, score -> {
+				return new AdventageScore(P1);
 			});
-			put(Players.P2, score -> {
-				return new AdventageScore(Players.P2);
+			put(P2, score -> {
+				return new AdventageScore(P2);
 			});
 		}});
 		put(WinScore.class, new HashMap<Players, Function<MatchScore, MatchScore>>(){{
-			put(Players.P1, score -> {
+			put(P1, score -> {
 				throw new IllegalStateException("Game over");
 			});
-			put(Players.P2, score -> {
+			put(P2, score -> {
 				throw new IllegalStateException("Game over");
 			});
 		}});
 		put(AdventageScore.class, new HashMap<Players, Function<MatchScore, MatchScore>>(){{
-			put(Players.P1, score -> {
-				return nextMatchScoreOfAdvantage(score, Players.P1);
+			put(P1, score -> {
+				return nextMatchScoreOfAdvantage(score, P1);
 			});
-			put(Players.P2, score -> {
-				return nextMatchScoreOfAdvantage(score, Players.P2);
+			put(P2, score -> {
+				return nextMatchScoreOfAdvantage(score, P2);
 			});
 		}});
 	}
@@ -80,11 +84,11 @@ public class Tennis {
 	}
 
 	public void p1TakeScore() {
-		matchScore = nextMatchScore(Players.P1);
+		matchScore = nextMatchScore(P1);
 	}
 
 	public void p2TakeScore() {
-		matchScore = nextMatchScore(Players.P2);
+		matchScore = nextMatchScore(P2);
 	}
 
 	private MatchScore nextMatchScore(Players playerTakeScore) {

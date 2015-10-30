@@ -1,3 +1,5 @@
+package tennis;
+
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class DuaceScore implements MatchScore {

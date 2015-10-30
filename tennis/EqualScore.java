@@ -1,3 +1,5 @@
+package tennis;
+
 public class EqualScore extends TennisScoreOnlyMatchScore {
 
 	public EqualScore(TennisScore score) {

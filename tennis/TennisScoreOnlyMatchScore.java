@@ -1,3 +1,5 @@
+package tennis;
+
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public abstract class TennisScoreOnlyMatchScore implements MatchScore {

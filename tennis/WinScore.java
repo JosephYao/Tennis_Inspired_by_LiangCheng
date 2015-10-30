@@ -1,3 +1,5 @@
+package tennis;
+
 public class WinScore extends PlayerOnlyMatchScore {
 
 	public WinScore(Players winner) {
