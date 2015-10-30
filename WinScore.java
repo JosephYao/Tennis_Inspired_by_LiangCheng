@@ -11,7 +11,7 @@ public class WinScore implements MatchScore {
 	}
 
 	public MatchScore nextMatchScore(Players takeScorePlayer) {
-		throw new IllegalStateException("Game over");
+		return Tennis.scoreToNextScore.get(this.getClass()).get(takeScorePlayer).apply(this);
 	}
 
 }

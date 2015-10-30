@@ -5,7 +5,7 @@ public class DuaceScore implements MatchScore {
 	}
 
 	public MatchScore nextMatchScore(Players takeScorePlayer) {
-		return new AdventageScore(takeScorePlayer);
+		return Tennis.scoreToNextScore.get(this.getClass()).get(takeScorePlayer).apply(this);
 	}
 
 }

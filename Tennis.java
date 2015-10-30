@@ -23,6 +23,22 @@ public class Tennis {
 				return nextMatchScore(score.p1(), score.p2().nextScore(), Players.P2);
 			}));
 		}});
+		put(DuaceScore.class, new HashMap<Players, Function<MatchScore, MatchScore>>(){{
+			put(Players.P1, (score -> {
+				return new AdventageScore(Players.P1);
+			}));
+			put(Players.P2, (score -> {
+				return new AdventageScore(Players.P2);
+			}));
+		}});
+		put(WinScore.class, new HashMap<Players, Function<MatchScore, MatchScore>>(){{
+			put(Players.P1, (score -> {
+				throw new IllegalStateException("Game over");
+			}));
+			put(Players.P2, (score -> {
+				throw new IllegalStateException("Game over");
+			}));
+		}});
 	}
 
 		private MatchScore nextMatchScore(TennisScore nextP1, TennisScore nextP2, Players player) {
