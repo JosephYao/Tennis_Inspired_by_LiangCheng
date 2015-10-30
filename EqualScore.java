@@ -2,6 +2,16 @@ public class EqualScore implements MatchScore {
 
 	final private TennisScore score;
 
+	@Override
+	public TennisScore p2() {
+		return score;
+	}
+
+	@Override
+	public TennisScore p1() {
+		return score;
+	}
+
 	public EqualScore(TennisScore score) {
 		this.score = score;
 	}
@@ -11,13 +21,7 @@ public class EqualScore implements MatchScore {
 	}
 
 	public MatchScore nextMatchScore(Players takeScorePlayer) {
-		TennisScore nextP1 = score;
-		TennisScore nextP2 = score;
-		if (takeScorePlayer == Players.P1)
-			nextP1 = score.nextScore();
-		else
-			nextP2 = score.nextScore();
-		return new PlayingScore(nextP1, nextP2);
+		return Tennis.scoreToNextScore.get(this.getClass()).get(takeScorePlayer).apply(this);
 	}
 
 }

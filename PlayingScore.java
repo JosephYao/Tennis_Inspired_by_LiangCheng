@@ -3,6 +3,16 @@ public class PlayingScore implements MatchScore {
 	final private TennisScore p1;
 	final private TennisScore p2;
 
+	@Override
+	public TennisScore p2() {
+		return p2;
+	}
+
+	@Override
+	public TennisScore p1() {
+		return p1;
+	}
+
 	public PlayingScore(TennisScore p1, TennisScore p2) {
 		this.p1 = p1;
 		this.p2 = p2;
@@ -13,16 +23,7 @@ public class PlayingScore implements MatchScore {
 	}
 
 	public MatchScore nextMatchScore(Players takeScorePlayer) {
-		TennisScore nextP1 = takeScorePlayer == Players.P1 ? p1.nextScore() : p1;
-		TennisScore nextP2 = takeScorePlayer == Players.P1 ? p2 : p2.nextScore();
-
-		if (isSomeOneWin(nextP1, nextP2))
-			return new WinScore(takeScorePlayer);
-		if (isDuaceScore(nextP1, nextP2))
-			return new DuaceScore();
-		if (nextP1 == nextP2)
-			return new EqualScore(nextP1);
-		return new PlayingScore(nextP1, nextP2);
+		return Tennis.scoreToNextScore.get(this.getClass()).get(takeScorePlayer).apply(this);
 	}
 
 	private boolean isDuaceScore(TennisScore nextP1, TennisScore nextP2) {
