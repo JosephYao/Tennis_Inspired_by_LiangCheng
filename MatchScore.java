@@ -1,15 +1,9 @@
 interface MatchScore {
 	String scoreText();
 
-	default TennisScore p1() {
-		return TennisScore.Love;
-	};
+	TennisScore p1();
 
-	default TennisScore p2() {
-		return TennisScore.Love;
-	}
+	TennisScore p2();
 
-	default Players advantager() {
-		return Players.P1;
-	}
+	Players advantager();
 }

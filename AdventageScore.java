@@ -1,18 +1,11 @@
-public class AdventageScore implements MatchScore {
-
-	final private Players player;
+public class AdventageScore extends PlayerOnlyMatchScore {
 
 	public AdventageScore(Players player) {
-		this.player = player;
+		super(player);
 	}
 
 	public String scoreText() {
 		return player + " Adventage";
-	}
-
-	@Override
-	public Players advantager() {
-		return player;
 	}
 
 }

@@ -1,13 +1,11 @@
-public class WinScore implements MatchScore {
-
-	final private Players winner;
+public class WinScore extends PlayerOnlyMatchScore {
 
 	public WinScore(Players winner) {
-		this.winner = winner;
+		super(winner);
 	}
 
 	public String scoreText() {
-		return winner + " Win";
+		return player + " Win";
 	}
 
 }
