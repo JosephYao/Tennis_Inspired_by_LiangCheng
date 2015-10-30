@@ -17,10 +17,10 @@ public class Tennis {
 		}});
 		put(PlayingScore.class, new HashMap<Players, Function<MatchScore, MatchScore>>(){{
 			put(Players.P1, (score -> {
-				return nextMatchScore(score.p1().nextScore(), score.p2(), Players.P1);
+				return nextMatchScoreOfPlaying(score.p1().nextScore(), score.p2(), Players.P1);
 			}));
 			put(Players.P2, (score -> {
-				return nextMatchScore(score.p1(), score.p2().nextScore(), Players.P2);
+				return nextMatchScoreOfPlaying(score.p1(), score.p2().nextScore(), Players.P2);
 			}));
 		}});
 		put(DuaceScore.class, new HashMap<Players, Function<MatchScore, MatchScore>>(){{
@@ -39,9 +39,23 @@ public class Tennis {
 				throw new IllegalStateException("Game over");
 			}));
 		}});
+		put(AdventageScore.class, new HashMap<Players, Function<MatchScore, MatchScore>>(){{
+			put(Players.P1, (score -> {
+				return nextMatchScoreOfAdvantage(score, Players.P1);
+			}));
+			put(Players.P2, (score -> {
+				return nextMatchScoreOfAdvantage(score, Players.P2);
+			}));
+		}});
 	}
 
-		private MatchScore nextMatchScore(TennisScore nextP1, TennisScore nextP2, Players player) {
+		private MatchScore nextMatchScoreOfAdvantage(MatchScore score, Players advantager) {
+			if (advantager == score.advantager())
+                return new WinScore(advantager);
+			return new DuaceScore();
+		}
+
+		private MatchScore nextMatchScoreOfPlaying(TennisScore nextP1, TennisScore nextP2, Players player) {
 			if (isSomeOneWin(nextP1, nextP2))
 				return new WinScore(player);
 			if (isDuaceScore(nextP1, nextP2))

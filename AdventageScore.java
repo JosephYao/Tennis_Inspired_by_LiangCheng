@@ -10,10 +10,13 @@ public class AdventageScore implements MatchScore {
 		return player + " Adventage";
 	}
 
+	@Override
+	public Players advantager() {
+		return player;
+	}
+
 	public MatchScore nextMatchScore(Players takeScorePlayer) {
-		if (player == takeScorePlayer)
-			return new WinScore(player);
-		return new DuaceScore();
+		return Tennis.scoreToNextScore.get(this.getClass()).get(takeScorePlayer).apply(this);
 	}
 
 }

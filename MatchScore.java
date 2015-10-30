@@ -10,4 +10,8 @@ interface MatchScore {
 	default TennisScore p2() {
 		return TennisScore.Love;
 	}
+
+	default Players advantager() {
+		return Players.P1;
+	}
 }
