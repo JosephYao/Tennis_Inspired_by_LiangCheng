@@ -17,31 +17,23 @@ public class Tennis {
 		}});
 		put(PlayingScore.class, new HashMap<Players, Function<MatchScore, MatchScore>>(){{
 			put(Players.P1, (score -> {
-				TennisScore nextP1 = score.p1().nextScore();
-				TennisScore nextP2 = score.p2();
-
-				if (isSomeOneWin(nextP1, nextP2))
-					return new WinScore(Players.P1);
-				if (isDuaceScore(nextP1, nextP2))
-					return new DuaceScore();
-				if (nextP1 == nextP2)
-					return new EqualScore(nextP1);
-				return new PlayingScore(nextP1, nextP2);
+				return nextMatchScore(score.p1().nextScore(), score.p2(), Players.P1);
 			}));
 			put(Players.P2, (score -> {
-				TennisScore nextP1 = score.p1();
-				TennisScore nextP2 = score.p2().nextScore();
-
-				if (isSomeOneWin(nextP1, nextP2))
-					return new WinScore(Players.P2);
-				if (isDuaceScore(nextP1, nextP2))
-					return new DuaceScore();
-				if (nextP1 == nextP2)
-					return new EqualScore(nextP1);
-				return new PlayingScore(nextP1, nextP2);
+				return nextMatchScore(score.p1(), score.p2().nextScore(), Players.P2);
 			}));
 		}});
 	}
+
+		private MatchScore nextMatchScore(TennisScore nextP1, TennisScore nextP2, Players player) {
+			if (isSomeOneWin(nextP1, nextP2))
+				return new WinScore(player);
+			if (isDuaceScore(nextP1, nextP2))
+				return new DuaceScore();
+			if (nextP1 == nextP2)
+				return new EqualScore(nextP1);
+			return new PlayingScore(nextP1, nextP2);
+		}
 
 		private boolean isDuaceScore(TennisScore nextP1, TennisScore nextP2) {
 			return nextP1 == nextP2 && nextP1 == TennisScore.Fourty;
