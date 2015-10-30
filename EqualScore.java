@@ -20,8 +20,4 @@ public class EqualScore implements MatchScore {
 		return score + " all";
 	}
 
-	public MatchScore nextMatchScore(Players takeScorePlayer) {
-		return Tennis.scoreToNextScore.get(this.getClass()).get(takeScorePlayer).apply(this);
-	}
-
 }

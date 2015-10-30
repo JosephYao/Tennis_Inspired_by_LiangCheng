@@ -15,8 +15,4 @@ public class AdventageScore implements MatchScore {
 		return player;
 	}
 
-	public MatchScore nextMatchScore(Players takeScorePlayer) {
-		return Tennis.scoreToNextScore.get(this.getClass()).get(takeScorePlayer).apply(this);
-	}
-
 }

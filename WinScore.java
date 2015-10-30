@@ -10,8 +10,4 @@ public class WinScore implements MatchScore {
 		return winner + " Win";
 	}
 
-	public MatchScore nextMatchScore(Players takeScorePlayer) {
-		return Tennis.scoreToNextScore.get(this.getClass()).get(takeScorePlayer).apply(this);
-	}
-
 }

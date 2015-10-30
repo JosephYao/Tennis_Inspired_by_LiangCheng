@@ -22,16 +22,4 @@ public class PlayingScore implements MatchScore {
 		return String.format("%s %s", p1, p2);
 	}
 
-	public MatchScore nextMatchScore(Players takeScorePlayer) {
-		return Tennis.scoreToNextScore.get(this.getClass()).get(takeScorePlayer).apply(this);
-	}
-
-	private boolean isDuaceScore(TennisScore nextP1, TennisScore nextP2) {
-		return nextP1 == nextP2 && nextP1 == TennisScore.Fourty;
-	}
-
-	private boolean isSomeOneWin(TennisScore nextP1, TennisScore nextP2) {
-		return nextP1 == TennisScore.DirectlyWin || nextP2 == TennisScore.DirectlyWin;
-	}
-
 }
