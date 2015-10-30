@@ -1,8 +1,8 @@
 package tennis;
 
-public class EqualScore extends TennisScoreOnlyMatchScore {
+public class EqualState extends TennisScoreOnlyMatchState {
 
-	public EqualScore(TennisScore score) {
+	public EqualState(Score score) {
 		super(score, score);
 	}
 

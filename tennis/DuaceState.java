@@ -2,21 +2,21 @@ package tennis;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class DuaceScore implements MatchScore {
+public class DuaceState implements MatchState {
 
 	public String scoreText() {
 		return "Duace";
 	}
 
-	public TennisScore p1() {
+	public Score p1() {
 		throw new NotImplementedException();
 	};
 
-	public TennisScore p2() {
+	public Score p2() {
 		throw new NotImplementedException();
 	}
 
-	public Players advantager() {
+	public Player advantager() {
 		throw new NotImplementedException();
 	}
 }

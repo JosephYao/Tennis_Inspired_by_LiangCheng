@@ -1,8 +1,8 @@
 package tennis;
 
-public class WinScore extends PlayerOnlyMatchScore {
+public class WinState extends PlayerOnlyState {
 
-	public WinScore(Players winner) {
+	public WinState(Player winner) {
 		super(winner);
 	}
 

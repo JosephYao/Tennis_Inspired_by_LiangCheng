@@ -2,24 +2,24 @@ package tennis;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-abstract public class PlayerOnlyMatchScore implements MatchScore {
+abstract public class PlayerOnlyState implements MatchState {
 
-    protected final Players player;
+    protected final Player player;
 
-    public PlayerOnlyMatchScore(Players player) {
+    public PlayerOnlyState(Player player) {
         this.player = player;
     }
 
     @Override
-    public Players advantager() {
+    public Player advantager() {
         return player;
     }
 
-    public TennisScore p1() {
+    public Score p1() {
         throw new NotImplementedException();
     };
 
-    public TennisScore p2() {
+    public Score p2() {
         throw new NotImplementedException();
     }
 

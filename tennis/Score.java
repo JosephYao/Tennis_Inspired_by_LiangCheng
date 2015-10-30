@@ -1,15 +1,15 @@
 package tennis;
 
-public enum TennisScore {
+public enum Score {
 	DirectlyWin(null), Fourty(DirectlyWin), Thirty(Fourty), Fifteen(Thirty), Love(Fifteen);
 
-	private TennisScore(TennisScore next) {
+	Score(Score next) {
 		this.next = next;
 	}
 
-	final private TennisScore next;
+	final private Score next;
 
-	public TennisScore nextScore() {
+	public Score nextScore() {
 		return next;
 	}
 }

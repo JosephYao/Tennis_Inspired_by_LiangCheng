@@ -1,8 +1,8 @@
 package tennis;
 
-public class AdventageScore extends PlayerOnlyMatchScore {
+public class AdventageState extends PlayerOnlyState {
 
-	public AdventageScore(Players player) {
+	public AdventageState(Player player) {
 		super(player);
 	}
 
