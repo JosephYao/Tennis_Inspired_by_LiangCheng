@@ -7,7 +7,7 @@ public class DifferentScoreState extends TennisScoreOnlyMatchState {
 	}
 
 	public String scoreText() {
-		return String.format("%s %s", p1(), p2());
+		return String.format("%s %s", p1Score(), p2Score());
 	}
 
 }

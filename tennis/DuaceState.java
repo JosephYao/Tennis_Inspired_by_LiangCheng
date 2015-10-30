@@ -8,11 +8,11 @@ public class DuaceState implements MatchState {
 		return "Duace";
 	}
 
-	public Score p1() {
+	public Score p1Score() {
 		throw new NotImplementedException();
 	};
 
-	public Score p2() {
+	public Score p2Score() {
 		throw new NotImplementedException();
 	}
 

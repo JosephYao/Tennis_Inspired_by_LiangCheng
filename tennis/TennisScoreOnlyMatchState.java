@@ -13,12 +13,12 @@ public abstract class TennisScoreOnlyMatchState implements MatchState {
     }
 
     @Override
-    public Score p1() {
+    public Score p1Score() {
         return p1;
     }
 
     @Override
-    public Score p2() {
+    public Score p2Score() {
         return p2;
     }
 
